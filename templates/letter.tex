@@ -1,0 +1,181 @@
+%%% Reaktiv %%%
+
+\documentclass%%
+%---------------------------------------------------------------------------
+  [fontsize=12pt,%%          Schriftgroesse
+%---------------------------------------------------------------------------
+% Satzspiegel
+   paper=a4,%%               Papierformat
+   enlargefirstpage=on,%%    Erste Seite anders
+   pagenumber=headright,%%   Seitenzahl oben mittig
+%---------------------------------------------------------------------------
+% Layout
+   headsepline=off,%%         Linie unter der Seitenzahl
+   parskip=half,%%           Abstand zwischen Absaetzen
+%---------------------------------------------------------------------------
+% Briefkopf und Anschrift
+   fromalign=right,%%        Plazierung des Briefkopfs
+   fromphone=on,%%           Telefonnummer im Absender
+   fromrule=off,%%           Linie im Absender (aftername, afteraddress)
+   fromfax=off,%%            Faxnummer
+   fromemail=on,%%           Emailadresse
+   fromurl=off,%%            Homepage
+   fromlogo=off,%%           Firmenlogo
+   addrfield=on,%%           Adressfeld fuer Fensterkuverts
+   backaddress=on,%%          ...und Absender im Fenster
+   subject=beforeopening,%%  Plazierung der Betreffzeile
+   locfield=narrow,%%        zusaetzliches Feld fuer Absender
+   foldmarks=off,%%          Faltmarken setzen
+   numericaldate=off,%%      Datum numerisch ausgeben
+   refline=narrow,%%         Geschaeftszeile im Satzspiegel
+%---------------------------------------------------------------------------
+% Formatierung
+   draft=false,    %% Entwurfsmodus, als Formatierungshilfe -> on=ein, off=aus
+   SN
+]{scrlttr2}
+
+\usepackage[babel,german=swiss]{csquotes}
+
+\usepackage{url}
+
+\usepackage{xltxtra,xunicode}
+\usepackage[ngerman]{babel}
+\setlength{\parindent}{0pt}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+
+% Schriften
+\setromanfont[Mapping=tex-text]{Linux Libertine O}
+%\setromanfont[Mapping=tex-text]{Ubuntu}
+
+\setsansfont[Mapping=tex-text]{Linux Biolinum O}
+%\setsansfont[Mapping=tex-text]{Ubuntu}
+
+\setmonofont[Mapping=tex-text,Scale=MatchLowercase]{Consolas}
+%%%%
+
+% Schönerer Tabellen
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize\ttfamily,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={},               % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=none,                      % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  otherkeywords={*},               % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+% Mehr Listenumgebungen
+\usepackage{paralist, blindtext}
+\usepackage{calc}
+\usepackage{textcomp,marvosym}
+
+\usepackage{xcolor}
+\definecolor{rulecolor}{rgb}{0.5,0.5,0.5}
+\definecolor{namecolor}{rgb}{0.3,0.3,0.3}
+\definecolor{titlecolor}{rgb}{0.7,0.7,0.7}
+\definecolor{sectioncolor}{rgb}{0.5,0.5,0.5}
+\definecolor{subsectioncolor}{rgb}{0.5,0.5,0.5}
+\definecolor{footercolor}{rgb}{0.5,0.5,0.5}
+\renewcommand*{\raggedsignature}{\raggedright}
+
+\pagestyle{fancy} %eig
+\fancyhf{} %alle Kopf- und Fußzeilenfelder bereinigen
+\fancyfoot[L]{}
+\fancyfoot[C]{} %zentrierte Kopfzeile
+\fancyfoot[R]{}
+\renewcommand{\headrulewidth}{0.0pt} %obere Trennlinie
+\fancyhead[L]{
+  \sffamily\footnotesize\textcolor{footercolor}{
+    \addfontfeature{Numbers=OldStyle}
+    $author.name$~--~$author.adress$~--~$author.city$
+   }
+} %Fusszeile links
+\fancyhead[R]{
+ \sffamily\footnotesize\textcolor{footercolor}{
+   \addfontfeature{Numbers=OldStyle}
+   \Mobilefone\ $author.mobile$~--~\Letter\ $author.email$
+   }
+} %zentrierte Fusszeile
+\fancyhead[C]{} %Fusszeile rechts
+\renewcommand{\footrulewidth}{0.pt} %untere Trennlinie
+
+
+\newkomavar{frommobile}
+\setkomavar{fromname}{$author.name$}
+\setkomavar{fromaddress}{$author.adress$ \\$author.city$}
+\setkomavar{frommobile}{$author.mobile$}
+\setkomavar{fromphone}{$author.phone$}
+\setkomavar{fromemail}{$author.email$}
+\setkomavar*{enclseparator}{Anlagen}
+
+\date{$date$}
+\setkomavar{subject}{$subject$}
+
+
+\usepackage[
+  colorlinks,
+  linkcolor=blue,
+  anchorcolor=blue,
+  citecolor=red,
+  filecolor=magenta,
+  urlcolor=magenta,
+  pdffitwindow=true,
+  hyperfigures=true,
+]{hyperref}
+\begin{document}
+\firsthead{}
+
+\begin{letter}{\addfontfeature{Numbers=OldStyle,Ligatures=Common}
+$if(addressee.company)$
+    $addressee.company$
+$endif$
+$if(addressee.name)$
+    \\$addressee.name$
+$endif$
+$if(addressee.adress)$
+    \\$addressee.adress$
+$endif$
+$if(addressee.city)$
+    \\$addressee.city$
+$endif$
+}
+
+\opening{\addfontfeature{Numbers=OldStyle,Ligatures=Common}$opening$}
+\addfontfeature{Numbers=OldStyle,Ligatures=Common}
+$body$
+
+\closing{\addfontfeature{Numbers=OldStyle,Ligatures=Common}$closing$}
+
+
+\end{letter}
+\end{document}
